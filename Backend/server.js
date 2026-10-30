@@ -12,10 +12,10 @@ const bookingRoute = require("./src/routers/bookingRoute");
 const userRouts = require("./src/routers/userRouts");
 const serviceRoute = require("./src/routers/serviceRoute");
 const reviewRoute = require("./src/routers/reviewRoute");
-
+const PORT = process.env.PORT || 5000;
 const app = express();
 
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth", authRout);
@@ -43,6 +43,6 @@ app.use("/api/reviews", reviewRoute);
 
 connectDB();
 
-app.listen(5000, () => {
-  console.log("Server running on port 5000");
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
