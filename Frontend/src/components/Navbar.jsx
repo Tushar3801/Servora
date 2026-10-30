@@ -1,18 +1,32 @@
+import { useState, useEffect } from "react";
 import { Container, Navbar, Nav, Button } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 function NavigationBar() {
   const { token, role, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const [expanded, setExpanded] = useState(false);
+
+  useEffect(() => {
+    setExpanded(false);
+  }, [location.pathname]);
 
   const handleLogout = () => {
+    setExpanded(false);
     logout();
     navigate("/");
   };
 
   return (
-    <Navbar bg="white" expand="lg" className="shadow-sm py-3">
+    <Navbar
+      bg="white"
+      expand="lg"
+      expanded={expanded}
+      onToggle={(value) => setExpanded(value)}
+      className="shadow-sm py-3"
+    >
       <Container>
         <Navbar.Brand as={Link} to="/" className="fw-bold fs-3 text-primary">
           Servora
