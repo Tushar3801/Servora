@@ -49,9 +49,9 @@ function Login() {
       login(token, userRole);
 
       if (userRole === "worker") {
-        navigate("/worker-dashboard");
+        navigate("/");
       } else if (userRole === "customer") {
-        navigate("/my-bookings");
+        navigate("/");
       } else {
         navigate("/");
       }
